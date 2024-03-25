@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rabota - danialoh</title>
+</head>
+<body>
+    <h1>rabota - danialoh</h1>
+    
+    <form id="versionForm">
+        <label for="version">Version:</label>
+        <input type="number" id="version" name="version" min="1" max="999" value="1"> <!-- Set default value -->
+        <button type="button" onclick="getFile()">Get File</button>
+    </form>
+
+    <script>
+        // Function to set cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        // Function to get cookie
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        // Function to retrieve last selected version from cookie
+        window.onload = function() {
+            var lastVersion = getCookie("lastVersion");
+            if (lastVersion !== "") {
+                document.getElementById("version").value = lastVersion;
+            }
+        };
+
+        // Function to handle getFile button click
+        function getFile() {
+            var version = document.getElementById("version").value;
+
+            // Ensure version is not empty and numeric and less than or equal to 999
+            if (version.trim() !== "" && !isNaN(version) && version <= 999) {
+                // Store the last selected version in a cookie
+                setCookie("lastVersion", version, 365); // Cookie expires in 365 days
+
+                // Construct the URL
+                var url = '/' + version + '/nodejs';
+
+                // Redirect to the URL
+                window.location.href = url;
+            } else {
+                alert("Please enter a valid version (up to 3 digits).");
+            }
+        }
+    </script>
+</body>
+</html>

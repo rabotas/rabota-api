@@ -1,0 +1,14 @@
+# Modules / Cache
+/node_modules
+/tests
+
+# Package lock files (Optional)
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+
+# Envs
+.env
+.env.local
+
+# ...
