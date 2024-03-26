@@ -2,7 +2,7 @@ module.exports = {
     apps : [{
         name   : "rabota-api",
         script : "npm run start",
-        instances: 2,
+        instances: 1,
         exec_mode: "fork",
         env_production: {
             NODE_ENV: "production",
