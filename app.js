@@ -41,5 +41,5 @@ app.use('/', require('./routes/payload'))
 
 /* ---------- */
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 80
 app.listen(PORT, () => logger.info(`API is up and running on port ${PORT}`))
